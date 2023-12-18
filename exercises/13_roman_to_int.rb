@@ -40,29 +40,27 @@
 # @return {Integer}
 def roman_to_int(s)
   romans = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000
+    "I" => 1,
+    "V" => 5,
+    "X" => 10,
+    "L" => 50,
+    "C" => 100,
+    "D" => 500,
+    "M" => 1000
   }
   sum = 0
-
   s.chars.each_with_index do |char, i|
     current_value = romans[char]
-
-    puts current_value
-    # if s[i + 1] && next_value > romans[char]
-    #   sum -= next_value
-    # else
-    #   sum += romans[char]
-    # end
+    next_value = romans[s[i + 1]]
+    if next_value && next_value > romans[char]
+      sum -= current_value
+    else
+      sum += current_value
+    end
   end
   sum
 end
 
 puts roman_to_int("III")
-# puts roman_to_int("LVIII")
-# puts roman_to_int("MCMXCIV")
+puts roman_to_int("LVIII")
+puts roman_to_int("MCMXCIV")
